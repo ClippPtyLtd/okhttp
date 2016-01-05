@@ -854,7 +854,7 @@ public final class HttpEngine {
       case HTTP_SEE_OTHER:
         String location = userResponse.header("Location");
         if (location == null) return null;
-        URL url = new URL(userRequest.url(), location);
+        URL url = new URL(userRequest.url(), location.replaceAll(" ", "%20"));
 
         // Don't follow redirects to unsupported protocols.
         if (!url.getProtocol().equals("https") && !url.getProtocol().equals("http")) return null;
