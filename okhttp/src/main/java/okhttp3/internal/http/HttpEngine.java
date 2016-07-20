@@ -962,7 +962,7 @@ public final class HttpEngine {
 
         String location = userResponse.header("Location");
         if (location == null) return null;
-        HttpUrl url = userRequest.url().resolve(location);
+        HttpUrl url = userRequest.url().resolve(location.replaceAll(" ", "%20"));
 
         // Don't follow redirects to unsupported protocols.
         if (url == null) return null;
